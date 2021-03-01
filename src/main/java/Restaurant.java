@@ -34,6 +34,17 @@ public class Restaurant {
         return Collections.unmodifiableList(menu);
     }
 
+    public int calculateOrderValue(List<String> items) {
+        int totalOrderValue = 0;
+        for(String itemName: items) {
+            Item item = this.findItemByName(itemName);
+            if (item == null)
+                throw new itemNotFoundException(itemName);
+            totalOrderValue = totalOrderValue + item.getPrice();
+        }
+        return totalOrderValue;
+    }
+
     private Item findItemByName(String itemName){
         for(Item item: menu) {
             if(item.getName().equals(itemName))

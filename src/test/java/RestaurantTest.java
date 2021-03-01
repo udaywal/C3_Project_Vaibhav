@@ -83,5 +83,24 @@ class RestaurantTest {
 
     // <<<<<<<<<<<<<<<<<<<<<<<MENU>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
+    
+    // >>>>>>>>>>>>>>>>>>>>>>>>>>>ORDER CALCULATION<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+    // Failing test case for order value calculation
+    @Test
+    public void throw_item_not_found_exception_while_calculating_the_order_value () {
+
+        // arrange
+        Restaurant searchedRestaurant = service.findRestaurantByName("Ruskin's cafe");
+
+        // act
+        List<String> items = new ArrayList<String>();
+        items.add("Invalid item name");
+
+        // assertion
+        assertThrows(itemNotFoundException.class, () -> searchedRestaurant.calculateOrderValue(items));
+    }
+
+    // <<<<<<<<<<<<<<<<<<<<<<<ORDER CALCULATION>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
 }
