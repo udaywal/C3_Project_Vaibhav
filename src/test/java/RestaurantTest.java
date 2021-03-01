@@ -83,7 +83,7 @@ class RestaurantTest {
 
     // <<<<<<<<<<<<<<<<<<<<<<<MENU>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
-    
+
     // >>>>>>>>>>>>>>>>>>>>>>>>>>>ORDER CALCULATION<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
     // Failing test case for order value calculation
@@ -99,6 +99,23 @@ class RestaurantTest {
 
         // assertion
         assertThrows(itemNotFoundException.class, () -> searchedRestaurant.calculateOrderValue(items));
+    }
+
+    // Passed test case for order value calculation
+    @Test
+    public void calculate_the_order_value_of_items_when_the_item_names_are_provided() {
+
+        // arrange
+        Restaurant searchedRestaurant = service.findRestaurantByName("Ruskin's cafe");
+
+        // act
+        List<String> items = new ArrayList<String>();
+        items.add("Latte");
+        items.add("Cold coffee");
+        int totalOrderValue = searchedRestaurant.calculateOrderValue(items);
+        
+        // assertion
+        assertEquals(180, totalOrderValue);
     }
 
     // <<<<<<<<<<<<<<<<<<<<<<<ORDER CALCULATION>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
